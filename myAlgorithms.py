@@ -1,5 +1,6 @@
 from quick_sort import *
 from LIS import *
+from collections import * 
 
 class myAlgorithms(object):
 
