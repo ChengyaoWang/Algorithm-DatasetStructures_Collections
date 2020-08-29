@@ -2,7 +2,6 @@
     This is the Collections for Small Short Algorithms
 '''
 
-
 # Euclidean Algorithm
 # Getting the Greatest Common Divisor of positive Integers a & b
 def gcd(a: int, b: int):

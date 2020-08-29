@@ -3,9 +3,8 @@
 '''
 # Merge Sort Algorithm
 # Time Complexity: O(nlogn)
-# Space Complexity: O(1)
+# Space Complexity: O(n)
 
-from datetime import time
 from utils import timer
 
 @timer
@@ -42,8 +41,7 @@ if __name__ == '__main__':
     for i in test_case_size:
         print(f'Array Size {i}........')
         dummyList = [random.randint(-100000, 100000) for _ in range(i)]
-        expected = sorted(dummyList)
         merge_sort(dummyList)
-        if expected != dummyList:
+        if dummyList != sorted(dummyList):
             raise ValueError("\nWrong answer, Aborting....")
         print('Passed\n')
