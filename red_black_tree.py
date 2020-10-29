@@ -21,13 +21,12 @@ class RB_Node(object):
 
         # Elders
         self.parent = parent
-        self.grandparent = self.parent.parent if self.parent else None
-        self.uncle = self.get_uncle()
-        # Peers
-        self.sibling = self.get_sibling()
         # Children
         self.left = left
         self.right = right
+
+    def get_grandparent(self):
+        return self.parent.parent if self.parent else None
 
     def get_sibling(self):
         if not self.parent:
@@ -63,8 +62,8 @@ class RBTrees(object):
         
         # At this point, we assume that y is an valid node
         # 1. Detach the left child of y
-        if y.left:
-            y.left.parent = x
+        # if y.left:
+        y.left.parent = x
         x.right = y.left
 
         # 2. Re-parent y
@@ -89,8 +88,8 @@ class RBTrees(object):
         assert(y != None), "Debug Port for y == None"
 
         # 1. Detach the right child of x
-        if y.right:
-            y.right.parent = x
+        # if y.right:
+        y.right.parent = x
         x.left = y.right
         # 2. Re-parent y
         y.parent = x.parent
@@ -141,7 +140,6 @@ class RBTrees(object):
             return False
         
         x.parent = insertLoc.parent
-        x.grandparent = x.parent.parent
         if insertLoc == insertLoc.parent.left:
             x.parent.left = x
         else:
@@ -157,34 +155,34 @@ class RBTrees(object):
 
         # y will be the uncle for x
         while x != self.root and x.parent.c == 'Red':
-            if x.parent == x.grandparent.left:
-                y = x.grandparent.right
+            if x.parent == x.get_grandparent().left:
+                y = x.get_grandparent().right
                 if y.c == 'Red':
                     x.parent.c = 'Black'
                     y.c = 'Black'
-                    x.grandparent.c = 'Red'
-                    x = x.grandparent
+                    x.get_grandparent().c = 'Red'
+                    x = x.get_grandparent()
                 else:
                     if x == x.parent.right:
                         x = x.parent
                         self._left_rotation(x)
                     x.parent.c = 'Black'
-                    x.grandparent.c = 'Black'
-                    self._right_rotation(x.grandparent)
+                    x.get_grandparent().c = 'Black'
+                    self._right_rotation(x.get_grandparent())
             else:
-                y = x.grandparent.left
+                y = x.get_grandparent().left
                 if y.c == 'Red':
                     x.parent.c = 'Black'
                     y.c = 'Black'
-                    x.grandparent.c = 'Red'
-                    x = x.grandparent
+                    x.get_grandparent().c = 'Red'
+                    x = x.get_grandparent()
                 else:
                     if x == x.parent.left:
                         x = x.parent
                         self._right_rotation(x)
                     x.parent.c = 'Black'
-                    x.grandparent.c = 'Black'
-                    self._left_rotation(x.grandparent)
+                    x.get_grandparent().c = 'Black'
+                    self._left_rotation(x.get_grandparent())
         self.root.c = 'Black'
         return True
         
@@ -223,10 +221,10 @@ if __name__ == '__main__':
     
     import random
 
-    for _ in range(20):
+    for _ in range(50):
 
-        randomPool = [random.randint(0, 100) for _ in range(10)]
-        print(randomPool)
+        randomPool = [random.randint(0, 1000) for _ in range(10)]
+        # print(randomPool)
         for i in randomPool:
             testTree.insert(i)
         print(testTree)
