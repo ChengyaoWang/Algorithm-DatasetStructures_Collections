@@ -118,6 +118,10 @@ class RBTrees(object):
         # 3. Fix relationship between x & y
         y.left = x
         x.parent = y
+
+        # # Update The root
+        # if self.root == x:
+        #     self.root = y
     
     # Right Rotation w.r.t x
     def _right_rotation(self, x: RB_Node):
@@ -143,6 +147,10 @@ class RBTrees(object):
         # 3. Fix the relationship between x & y
         y.right = x
         x.parent = y
+
+        # # Update The root
+        # if self.root == x:
+        #     self.root = y
         
 
     # Returns the Closest Node Compared with Target
@@ -223,13 +231,15 @@ class RBTrees(object):
         
         copiedNode_child.parent = copiedNode.parent
         
-        if copiedNode == copiedNode.parent.left:
-            copiedNode_child.parent.left = copiedNode_child
-        else:
-            copiedNode_child.parent.right = copiedNode_child
+
+        if copiedNode.parent:
+            if copiedNode == copiedNode.parent.left:
+                copiedNode_child.parent.left = copiedNode_child
+            else:
+                copiedNode_child.parent.right = copiedNode_child
 
         # Handles the simpliest case here
-        if copiedNode.c == 'Black' and not copiedNode_child.isLeaf:
+        if copiedNode.c == 'Black':
             if copiedNode_child.c == 'Red':
                 copiedNode_child.c = 'Black'
             else:
@@ -334,7 +344,7 @@ class RBTrees(object):
         sibling.c = sibling.parent.c
         sibling.parent.c = 'Black'
 
-        if sibling == sibling.parent.left:
+        if x == x.parent.left:
             sibling.right.c = 'Black'
             self._left_rotation(x.parent)
         else:
@@ -363,11 +373,11 @@ class RBTrees(object):
     def delete(self, key) -> bool:
         
         delLeaf = self._delete_node_tree(key)
+
         if delLeaf is not None:
             assert(self._deletion_restoreRB(delLeaf))
     
         return True
-
 
 
 
@@ -380,13 +390,13 @@ if __name__ == '__main__':
     
     import random
 
-    for _ in range(1):
-        random.seed(10)
-        randomPool = [random.randint(0, 1000) for _ in range(10)]
-        # print(randomPool)
+    for _ in range(50):
+        randomPool = [random.randint(0, 100) for _ in range(10)]
+        print(f'Inserting {randomPool}')
         for i in randomPool:
             testTree.insert(i)
-            # print(testTree)
+        randomPool = [random.randint(0, 100) for _ in range(10)]
+        print(f'Deleting {randomPool}')
         for i in randomPool:
             testTree.delete(i)
-            print(testTree)
+        print(testTree)
