@@ -76,7 +76,6 @@ class SegmentTree_TreeImple(object):
         self._update_util(root = self.root, idx = idx, dVal = dVal)
 
 
-
 # Implementation Using Arrays
 class SegmentTree_ArrImple(object):
 
