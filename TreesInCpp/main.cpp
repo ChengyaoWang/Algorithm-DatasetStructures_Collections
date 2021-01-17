@@ -3,6 +3,7 @@
 */
 
 # include "BinarySearchTree.hpp"
+# include "AVLTree.hpp"
 # include "TreeBase.hpp"
 
 # include <vector>
