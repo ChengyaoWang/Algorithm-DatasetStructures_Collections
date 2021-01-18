@@ -2,6 +2,7 @@
 # define AVLNODE_HPP
 
 # include <algorithm>
+# include <iostream>
 
 template<typename K, typename V>
 class AVL_Node{
@@ -10,7 +11,6 @@ public:
     K key;
     V val;
     AVL_Node<K, V>* left, *right, *parent;
-    // Height of Left / Right Subtree
     int leftH = 0, rightH = 0;
 
     // Constructors & Destructors

@@ -8,8 +8,6 @@ template<typename K, typename V>
 class BinaryTree: Tree<K, V>{
 
 private:
-    BinNode<K, V>* root = nullptr;
-
     /*
         Differences Between:
             _add_helper -> Returns the Insertion Location 
@@ -40,6 +38,7 @@ private:
     }
 
 public:
+    BinNode<K, V>* root = nullptr;
     int nodeNum = 0;
 
     BinaryTree(void){}

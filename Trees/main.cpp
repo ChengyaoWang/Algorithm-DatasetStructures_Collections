@@ -34,8 +34,12 @@ void insertion_test_(T* tree, int repetition = 1000){
                 seen.erase(numGen);
             }
         }
-        
+    
         // Validate the Result
+        if (!tree -> check_validity()) {
+            std::cout << "AVL Tree Invalid, Please Check for Error MSG" << std::endl;
+        }
+
         for (int j = 0; j < 10000; ++j){            
             FLAG_CORRECT = ((seen.find(j) == seen.end()) && ((*tree)[j] == -1)) || 
                            ((seen.find(j) != seen.end()) && ((*tree)[j] == j + 1));
@@ -43,22 +47,19 @@ void insertion_test_(T* tree, int repetition = 1000){
         }
         std::cout << FLAG << " || Tree Size: " << tree -> nodeNum;
         std::cout << " || Set Size: " << seen.size() << std::endl;
-
     }
 
-    return;
 
     std::cout << "Inorder Traversal: Should be Monotonically Increasing" << std::endl;
-    // tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
+    tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
 
     std::cout << std::endl << "Erasing All Elements:" << std::endl;
     for(int j = 0; j < 10000; ++j){
-        std::cout << j << std::endl;
         tree -> remove(j);
         seen.erase(j);
     }
     std::cout << std::endl << "Inorder Traversal: Should be Empty" << std::endl;
-    // tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
+    tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
 
 }
 
