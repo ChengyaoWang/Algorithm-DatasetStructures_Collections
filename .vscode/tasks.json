@@ -9,9 +9,9 @@
                 "-std=c++2a",
                 "-stdlib=libc++",
                 "-g",
-                "./TreesInCpp/main.cpp",
+                "./Trees/main.cpp",
                 "-o",
-                "./TreesInCpp/main",
+                "./Trees/main",
             ],
             "options": {
                 "cwd": "${workspaceFolder}",

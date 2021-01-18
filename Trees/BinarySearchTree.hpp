@@ -2,6 +2,7 @@
 #define BINARYSEARCHTREE_HPP
 
 # include "TreeBase.hpp"
+# include "BinNode.hpp"
 
 template<typename K, typename V>
 class BinaryTree: Tree<K, V>{

@@ -29,24 +29,27 @@ void insertion_test_(T* tree, int repetition = 1000){
             if (j < 1000){
                 tree -> insert(numGen, numGen + 1);
                 seen.insert(numGen);
-            }else {
+            } else {
                 tree -> remove(numGen);
                 seen.erase(numGen);
             }
         }
-
+        
         // Validate the Result
-        for (int j = 0; j < 10000; ++j){
+        for (int j = 0; j < 10000; ++j){            
             FLAG_CORRECT = ((seen.find(j) == seen.end()) && ((*tree)[j] == -1)) || 
                            ((seen.find(j) != seen.end()) && ((*tree)[j] == j + 1));
             FLAG &= FLAG_CORRECT;
         }
         std::cout << FLAG << " || Tree Size: " << tree -> nodeNum;
         std::cout << " || Set Size: " << seen.size() << std::endl;
+
     }
 
+    return;
+
     std::cout << "Inorder Traversal: Should be Monotonically Increasing" << std::endl;
-    tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
+    // tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
 
     std::cout << std::endl << "Erasing All Elements:" << std::endl;
     for(int j = 0; j < 10000; ++j){
@@ -55,7 +58,7 @@ void insertion_test_(T* tree, int repetition = 1000){
         seen.erase(j);
     }
     std::cout << std::endl << "Inorder Traversal: Should be Empty" << std::endl;
-    tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
+    // tree -> InorderTraverse([](auto p){std::cout << p -> key << " ";});
 
 }
 
@@ -64,9 +67,11 @@ void insertion_test_(T* tree, int repetition = 1000){
 
 int main(int argc, char* argv[]){
     
-    BinaryTree<int, int>* tree = new BinaryTree<int, int>();
+    // BinaryTree<int, int>* tree = new BinaryTree<int, int>();
+    // insertion_test_<BinaryTree<int, int>>(tree, 1000);
 
-    insertion_test_<BinaryTree<int, int>>(tree, 1000);
+    AVL_Tree<int, int>* tree = new AVL_Tree<int, int>();
+    insertion_test_<AVL_Tree<int, int>>(tree, 1000);
 
     return 0;
 }
