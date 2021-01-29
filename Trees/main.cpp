@@ -5,6 +5,7 @@
 # include "BinarySearchTree.hpp"
 # include "AVLTree.hpp"
 # include "BTree.hpp"
+# include "BpTree.hpp"
 # include "TreeBase.hpp"
 
 
@@ -31,8 +32,7 @@ void insertion_test_(T* tree, int repetition = 1000){
             if (j < 1000){
                 seen.insert(numGen);
                 tree -> insert(numGen, numGen + 1);
-            }
-            else {
+            } else {
                 seen.erase(numGen);
                 tree -> remove(numGen);
             }
@@ -43,16 +43,14 @@ void insertion_test_(T* tree, int repetition = 1000){
             std::cout << "AVL Tree Invalid, Please Check for Error MSG" << std::endl;
         }
 
-        for (int j = 0; j < 10000; ++j){            
+        for (int j = 0; j < 10000; ++j){         
             FLAG_CORRECT = ((seen.find(j) == seen.end()) && ((*tree)[j] == -1)) || 
                            ((seen.find(j) != seen.end()) && ((*tree)[j] == j + 1));
             FLAG &= FLAG_CORRECT;
         }
         std::cout << FLAG << " || Tree Size: " << tree -> nodeNum;
         std::cout << " || Set Size: " << seen.size() << std::endl;
-
     }
-
     // return ;
 
     std::cout << "Inorder Traversal: Should be Monotonically Increasing" << std::endl;
@@ -79,8 +77,12 @@ int main(int argc, char* argv[]){
     // AVL_Tree<int, int>* tree = new AVL_Tree<int, int>();
     // insertion_test_<AVL_Tree<int, int>>(tree, 1000);
 
-    BTree<int, int>* tree = new BTree<int, int>(3);
-    insertion_test_<BTree<int, int>>(tree, 1000);
+    // BTree<int, int>* tree = new BTree<int, int>(10);
+    // insertion_test_<BTree<int, int>>(tree, 1000);
+
+    BpTree<int, int>* tree = new BpTree<int, int>(10);
+    insertion_test_<BpTree<int, int>>(tree, 1000);
+
 
     return 0;
 }
