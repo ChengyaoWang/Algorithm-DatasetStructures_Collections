@@ -15,7 +15,8 @@ This is a Collection for Common Algorithm &amp; Data Structures. Doing for Fun
     - Binary Search Trees (C++)
     - Segmentation Trees (Python / C++)
     - AVL Trees (C++)
-    - B Trees (C++)
+    - B- Trees (C++)
+    - B+ Trees (C++)
     - Tries (Python)
     - Red Black Trees (Python)
   - Other
