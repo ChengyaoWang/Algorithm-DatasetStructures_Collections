@@ -21,6 +21,7 @@ This is a Collection for Common Algorithm &amp; Data Structures. Doing for Fun
     - Red Black Trees (Python)
   - Other
     - Doubly Linked List (Python)
+    - Min / Max Binary Heap (Go)
 
 ## LeetCode Problems:
   - No. 1114 Print In Order (C++)
