@@ -24,6 +24,7 @@ This is a Collection for Common Algorithm &amp; Data Structures. Doing for Fun
     - Min / Max Binary Heap (Go)
 
 ## LeetCode Problems:
+### Note that Many Solutions May be too verbose
   - No. 1114 Print In Order (C++)
   - No. 1242 Web Crawler (C++11)
   - No. 297 Serialization & Deserialization of Binary Trees (C++)
