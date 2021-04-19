@@ -24,6 +24,11 @@ This is a Collection for Common Algorithm &amp; Data Structures. Doing for Fun
     - Min / Max Binary Heap (Go)
 
 ## LeetCode Problems:
+### Archives some interesting problems
   - No. 1114 Print In Order (C++)
   - No. 1242 Web Crawler (C++11)
   - No. 297 Serialization & Deserialization of Binary Trees (C++)
+  - No. 1129 Shortest Path Alternating Colors (Go)
+  - No. 146 LRU Cache (C++)
+  - No. 329 Longest Increasing Path In A Matrix (Go)
+  - No. 706 Design Hash Map (Go)
