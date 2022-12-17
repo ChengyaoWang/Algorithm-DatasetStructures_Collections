@@ -1,7 +1,5 @@
 CXX = clang++
-
 SOURCE_CXX = main.cpp
-
 TARGET = dummyObjectFile
 LDFLAGS_COMMON = -std=c++2a
 
