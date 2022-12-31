@@ -1,4 +1,6 @@
 package dll
 
-type Node struct {
+// Doubly Linked List
+
+type Node[V comparable] struct {
 }
