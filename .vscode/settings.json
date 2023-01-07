@@ -2,6 +2,22 @@
     "files.associations": {
         "vector": "cpp",
         "limits": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "*.tcc": "cpp",
+        "cmath": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "new": "cpp",
+        "cstdint": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "utility": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "numeric": "cpp"
     }
 }
