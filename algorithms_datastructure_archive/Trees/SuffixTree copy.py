@@ -18,7 +18,7 @@ from typing import List, Tuple, Dict
 #     def __init__(self, n_idx_st: int, n_idx_en: int) -> SuffixTreeEdge:
 #         self.n_idx_st: int = n_idx_st
 #         self.n_idx_en: int = n_idx_en
-        
+
 # Node Class for SuffixTrees
 class SuffixTreeNode(object):
     def __init__(self,
@@ -29,7 +29,7 @@ class SuffixTreeNode(object):
         self.l_idx: int = l_idx
 
         self.suffix_link: SuffixTreeNode = None
-        self.children: Dict[str, SuffixTreeNode] = {}
+        self.children: Dict[str, SuffixTreeNode] = {'\0': None}
 
     def split(self,
         act_i: int, act_l: int, 
@@ -39,7 +39,7 @@ class SuffixTreeNode(object):
         if self.l_idx < act_l:
             raise RuntimeError('Cannot Split At Index Beyond the Length of Current Edge')
         
-        new_l: int = 
+        # new_l: int = 
 
         self.children[act_ori_c] = SuffixTreeNode(n_idx = self.n_idx + act_l, l_idx = self.l_idx)
         self.children[act_new_c] = SuffixTreeNode(n_idx = act_i)
@@ -61,17 +61,19 @@ class SuffixTree(object):
 
     def __init__(self) -> None:
         self.root: SuffixTreeNode = SuffixTreeNode(n_idx = -1)
+        self.s: str = None
 
     def build_tree(self, s: str):
         # Insert Termination Char
         s += '$'
+        self.s = s
 
         # Prepare to Build Tree
         n = len(s)
-        self.act_e: int = None
+        self.act_e: str = '\0'
         self.act_n: SuffixTreeNode = self.root
         self.act_l: int = 0
-        self.remainder: int = 1
+        self.remainder: int = 0
 
         # Begins Iterative Insertion
         for i, c in enumerate(s):
@@ -92,9 +94,9 @@ class SuffixTree(object):
             # Now we HAVE to split
             split_node_prev: SuffixTreeNode = None
             while self.remainder > 0:
-                split_node = self.act_n.split(
-                    act_i = i, act_l = 
-                )
+                # split_node = self.act_n.split(
+                #     act_i = i, act_l = 
+                # )
                 if split_node_prev is not None:
                     split_node_prev.suffix_link = split_node
                 split_node_prev = split_node
