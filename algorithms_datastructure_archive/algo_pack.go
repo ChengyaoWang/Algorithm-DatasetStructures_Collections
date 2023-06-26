@@ -40,3 +40,37 @@ func kmp_algo(s, t string) []int {
 	}
 	return ret
 }
+
+func lower_bound[T int](arr *[]T, tgt T) int {
+	lo, hi := 0, len(*arr)
+	for lo < hi {
+		mid := lo + (hi-lo)/2
+		if tgt <= (*arr)[mid] {
+			hi = mid
+		} else {
+			lo = mid + 1
+		}
+	}
+
+	if lo < len(*arr) && (*arr)[lo] < tgt {
+		lo += 1
+	}
+	return lo
+}
+
+func upper_bound[T int](arr *[]T, tgt T) int {
+	lo, hi := 0, len(*arr)
+	for lo < hi {
+		mid := lo + (hi-lo)/2
+		if tgt < (*arr)[mid] {
+			hi = mid
+		} else {
+			lo = mid + 1
+		}
+	}
+
+	if lo < len(*arr) && (*arr)[lo] <= tgt {
+		lo += 1
+	}
+	return lo
+}
