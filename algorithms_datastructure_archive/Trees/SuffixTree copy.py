@@ -57,6 +57,11 @@ class SuffixTreeNode(object):
         self.children[c] = child
         return
 
+    def contains(self, c: str) -> bool:
+        return c in self.children
+
+
+
 class SuffixTree(object):
 
     def __init__(self) -> None:
@@ -77,6 +82,28 @@ class SuffixTree(object):
 
         # Begins Iterative Insertion
         for i, c in enumerate(s):
+
+            '''
+                Try to see if we can still be lazy, this composed of 2 situtions
+                    1) If self.act_e is None, try to see if `c` is self.act_n's child
+                    2) If self.act_i is not None, try to see if next char along the edge matches `c`
+            '''
+            
+            if self.act_e == '\0' and self.act_n.contains(c = c):
+                self.act_l += 1
+                self.remainder += 1
+                continue
+            if self.act_e != '\0' and s[self.act_n[self.act_e].n_idx + self.act_l] == c:
+                self.act_l += 1
+                self.remainder += 1
+                if self.act_l == self.act_n.l_idx:
+
+            
+
+
+
+            
+
 
             # If we can still be lazy, Update self.act_xxx
             if self.act_n[c] is None and self.act_e is None:

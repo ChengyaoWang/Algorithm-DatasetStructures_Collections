@@ -2,10 +2,7 @@
     Implementation Moris - Inorder Traversal
         -> O(n) Space for BST traversal
 '''
-from red_black_tree import RBTrees
-
-
-
+from Trees.red_black_tree import RBTrees
 
 def MorisInorderTraversal(root, func) -> bool:
 
@@ -28,7 +25,6 @@ def MorisInorderTraversal(root, func) -> bool:
             root = root.right
 
     return True
-
 
 if __name__ == '__main__':
 
