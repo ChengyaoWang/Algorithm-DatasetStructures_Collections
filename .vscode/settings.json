@@ -92,5 +92,6 @@
         "stop_token": "cpp",
         "cinttypes": "cpp"
     },
-    "python.analysis.typeCheckingMode": "off"
+    "python.analysis.typeCheckingMode": "off",
+    "C_Cpp.default.compilerPath": "/usr/bin/clang"
 }
