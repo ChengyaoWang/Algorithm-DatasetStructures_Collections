@@ -90,7 +90,8 @@
         "functional": "cpp",
         "iterator": "cpp",
         "stop_token": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "text_encoding": "cpp"
     },
     "python.analysis.typeCheckingMode": "off",
     "C_Cpp.default.compilerPath": "/usr/bin/clang"
