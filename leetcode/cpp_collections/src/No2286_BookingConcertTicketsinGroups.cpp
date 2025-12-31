@@ -117,55 +117,65 @@ public:
     }
     
     vector<int> gather(int k, int maxRow) {
-        long long max_empty_row = tree_max -> query(minRowThreshold, maxRow + 1, 0, 0, n);
+        
+        long long kll = (long long)k;
+        long long cap_at_i = tree_max -> query(minRowThreshold, maxRow + 1, 0, 0, n);
+        int lo = minRowThreshold + 1, hi = maxRow + 2, mid;
 
-        if (max_empty_row < k) {
-            return vector<int> {};
+        if (cap_at_i < kll || lo >= hi) {
+            return vector<int>{};
         }
 
-        int retRow, retCol;
-        for (int i = minRowThreshold; i <= maxRow; ++i) {
-            if (vec[i] < k)
-                continue;
+        while (lo < hi) {
+            mid = (lo + hi) / 2;
+            cap_at_i = tree_max -> query(minRowThreshold, mid, 0, 0, n);
+            
+            if (cap_at_i < k)
+                lo = mid + 1;
+            else
+                hi = mid;
+        }        
 
-            retRow = i;
-            retCol = m - vec[i];
+        if (lo == maxRow + 2)
+            return vector<int>{};
 
-            vec[i] -= k;
-            tree_max -> update(vec[i], i, 0, 0, n);
-            tree_sum -> update(vec[i], i, 0, 0, n);
-            break;
-        }
+        long long remainder = (tree_max -> query(minRowThreshold, lo, 0, 0, n) - kll);
+        int retRow = lo - 1, retCol = m - vec[lo - 1];
+        tree_max -> update(remainder, lo - 1, 0, 0, n);
+        tree_sum -> update(remainder, lo - 1, 0, 0, n);
+        vec[lo - 1] = remainder;
+        // minRowThreshold = lo - 1 + (remainder == 0 ? 1: 0);        
 
-        while(minRowThreshold < n && vec[minRowThreshold] == 0)
-            ++minRowThreshold;
-
-        return vector<int>{retRow, retCol};        
+        return vector<int>{retRow, retCol};
     }
     
     bool scatter(int k, int maxRow) {
-        long long max_cap = tree_sum -> query(minRowThreshold, maxRow + 1, 0, 0, n);
+    
         long long kll = (long long)k;
+        long long cap_at_i = tree_sum -> query(minRowThreshold, maxRow + 1, 0, 0, n);
+        int lo = minRowThreshold + 1, hi = maxRow + 2, mid;
 
-        if (max_cap < k) {
+        if (cap_at_i < kll || lo >= hi)
             return false;
-        }
 
-        long long cap_at_i, tmp;
-        for (int i = minRowThreshold; i <= maxRow; ++i) {
-            cap_at_i = vec[i];
+        while (lo < hi) {
+            mid = (lo + hi) / 2;
+            cap_at_i = tree_sum -> query(minRowThreshold, mid, 0, 0, n);
             
-            tree_max -> update(cap_at_i - min(cap_at_i, kll), i, 0, 0, n);
-            tree_sum -> update(cap_at_i - min(cap_at_i, kll), i, 0, 0, n);
-
-            vec[i] -= min(cap_at_i, kll);
-            kll -= min(cap_at_i, kll);
-            if (kll == 0LL)
-                break;
+            if (cap_at_i < k)
+                lo = mid + 1;
+            else
+                hi = mid;
         }
 
-        while(minRowThreshold < n && vec[minRowThreshold] == 0)
-            ++minRowThreshold;
+        if (lo == maxRow + 2)
+            return false;
+
+        long long remainder = (tree_sum -> query(minRowThreshold, lo, 0, 0, n) - kll);
+        tree_max -> update(remainder, lo - 1, 0, 0, n);
+        tree_sum -> update(remainder, lo - 1, 0, 0, n);
+        vec[lo - 1] = remainder;
+        minRowThreshold = lo - 1 + (remainder == 0 ? 1: 0);
 
         return true;
     }
